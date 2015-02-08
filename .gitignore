@@ -31,6 +31,7 @@
 *.x86_64
 *.hex
 *.img
+*.bin
 
 #MacOSX specific crap
 *.DS_Store
@@ -39,3 +40,5 @@
 */object/*
 */build/*
 */sdcard/*
+*/obj/*
+*/bin/*
