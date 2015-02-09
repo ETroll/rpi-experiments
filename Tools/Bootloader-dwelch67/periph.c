@@ -62,6 +62,17 @@ void uart_send ( unsigned int c )
     }
     PUT32(AUX_MU_IO_REG,c);
 }
+
+void uart_writeline(const char* data)
+{
+    unsigned int i = 0;
+    while (data[i] != '\0')
+    {
+        uart_send(data[i++]);
+    }
+    uart_send('\n');
+}
+
 //------------------------------------------------------------------------
 void uart_flush ( void )
 {

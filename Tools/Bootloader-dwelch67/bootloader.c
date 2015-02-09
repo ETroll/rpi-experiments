@@ -28,6 +28,7 @@ extern void uart_init ( void );
 extern unsigned int uart_lcr ( void );
 extern void uart_flush ( void );
 extern void uart_send ( unsigned int );
+extern void uart_writeline(const char*);
 extern unsigned int uart_recv ( void );
 extern unsigned int uart_check ( void );
 extern void hexstring ( unsigned int );
@@ -125,7 +126,9 @@ int notmain ( void )
                             uart_send(0x0D);
                             uart_send(0x0A);
                             uart_send(0x0A);
-                            hexstring(0xDADADADA);
+                            //hexstring(0xDADADADA);
+                            uart_send('\n');
+                            uart_writeline("Ready to run. Press g/G to run.\0");
                             while(1)
                             {
                                 rb=uart_recv();
@@ -137,6 +140,8 @@ int notmain ( void )
                                     uart_send(0x0D);
                                     uart_send(0x0A);
                                     uart_send(0x0A);
+
+                                    uart_writeline("Branching to program. Good bye!\0");
                                     BRANCHTO(ARMBASE);
                                 }
                             }
